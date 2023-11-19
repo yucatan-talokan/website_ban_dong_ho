@@ -20,7 +20,6 @@ public class Movement {
     @Column(name = "name")
     private String name;
 
-    @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "movement")
     private List<Product> products;
 }

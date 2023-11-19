@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{guest/home::dynamic(~{::main})}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<main class="row">
+    <div class="col-sm-4" th:each="p:${products.getContent()}">
+        <div class="panel panel-primary poly-item text-center">
+            <div class="panel-heading">
+                <div class="panel-title" th:text="${p.shortName}"></div>
+            </div>
+            <div class="panel-body">
+                <a th:href="@{/products/details(id=${p.id})}">
+                    <img th:src="${p.image}" width="150px">
+                </a>
+            </div>
+            <div class="panel-footer text-right">
+                <b class="pull-left" th:text="${p.price + ' đ'}"></b>
+                <a class="btn btn-success" th:href="@{/products/addToCart(id=${p.id})}">
+                    <i class="glyphicon glyphicon-shopping-cart"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 text-center">
+            <a th:if="${products.getNumber()>0}" th:href="@{/products(page=${products.getNumber()})}" class="btn btn-primary">Previous</a>
+            <a th:unless="${products.getNumber()>0}" th:href="@{/products(page=${products.getNumber()})}" class="btn btn-danger disabled">Previous</a>
+
+            <span th:text="${products.getNumber()+1} +'/'+ ${products.getTotalPages()}"></span>
+
+
+            <a th:if="${products.getNumber()<products.getTotalPages()-1}" th:href="@{/products(page=${products.getNumber()+2})}" class="btn btn-primary">Next</a>
+            <a th:unless="${products.getNumber()<products.getTotalPages()-1}" th:href="@{/products(page=${products.getNumber()+2})}" class="btn btn-danger disabled">Next</a>
+        </div>
+
+
+    </div>
+</main>
+</body>
+</html>

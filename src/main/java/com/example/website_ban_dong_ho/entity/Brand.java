@@ -20,7 +20,7 @@ public class Brand {
     @Column(name = "name")
     private String name;
 
-    @JsonIgnore
+
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "brand")
     private List<Product> products;
 

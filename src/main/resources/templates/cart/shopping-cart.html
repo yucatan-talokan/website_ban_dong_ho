@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{guest/home::dynamic(~{::main})}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<main>
+    <div class="panel panel-primary">
+        <div class="panel-heading">Giỏ hàng</div>
+        <table class="table">
+            <tr>
+                <th>ID</th>
+                <th>Tên</th>
+                <th>Đơn giá</th>
+                <th>Số lượng</th>
+                <th>Thành tiền</th>
+            </tr>
+            <tr th:each="p:${products}">
+                <td th:text="${p.id}" th:value="${p.id}" th:name="id"></td>
+                <td th:text="${p.name}" th:value="${p.name}" th:name="name"></td>
+                <td th:text="'đ '+${p.price}" th:value="${p.price}" th:name="price"></td>
+                <td th:text="${p.quantity}" th:value="${p.quantity}" th:name="quantity"> </td>
+                <td class="totalPrice" th:value="${p.price * p.quantity}" th:text="'đ '+${p.price * p.quantity}" th:name="totalPrice"></td>
+                <td>
+                    <a th:href="@{/cart/deleteOne(id=${p.id})}" class="btn btn-sm btn-danger">
+                        <i class="glyphicon glyphicon-trash"></i>
+                    </a>
+                </td>
+            </tr>
+        </table>
+        <div class="panel-footer">
+            <button class="btn btn-danger">
+                <i class="glyphicon glyphicon-trash"></i> Xoá tất cả
+            </button>
+            <a class="btn btn-primary" th:href="@{/orders/checkout}">
+                <i class="glyphicon glyphicon-hand-right"></i> Mua ngay
+            </a>
+        </div>
+    </div>
+</main>
+<script></script>
+</body>
+</html>

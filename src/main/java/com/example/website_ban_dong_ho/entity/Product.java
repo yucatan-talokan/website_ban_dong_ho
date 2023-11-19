@@ -16,6 +16,9 @@ public class Product {
     @Column(name = "id")
     private Integer id;
 
+    @Column(name = "shortname")
+    private String shortName;
+
     @Column(name = "name")
     private String name;
 

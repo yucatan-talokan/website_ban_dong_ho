@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{guest/home::dynamic(~{::main})}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<main>
+    <div class="panel panel-primary">
+        <div class="panel-heading">Đơn hàng đã đặt</div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Ngày đặt</th>
+                <th>Địa chỉ nhận hàng</th>
+                <th>Phương thức thanh toán</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="order:${listOrders}">
+                <td th:text="${order.id}"></td>
+                <td th:text="${#dates.format(order.createDate,'dd/MM/yyyy')}"></td>
+                <td th:text="${order.deliveryAddress}"></td>
+                <td th:text="${order.paymentMethod}"></td>
+                <td>
+                    <a th:href="@{/orders/detail(id=${order.id})}" class="btn btn-default">
+                        <b class="glyphicon glyphicon-search"></b>
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
+</body>
+</html>

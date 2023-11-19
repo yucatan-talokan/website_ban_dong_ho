@@ -20,7 +20,6 @@ public class Strap {
     @Column(name = "name")
     private String name;
 
-    @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "strap")
     private List<Product> products;
 }
