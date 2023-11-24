@@ -555,11 +555,9 @@
             <div class="table-wrapper">
                 <div class="table-title">
                     <div class="row">
-                        <div class="col-sm-4">
-                            <a href="#addEmployeeModal" class="btn btn-success"  ><i
+                        <div class="col-xs-3">
+                            <a th:href="@{/manage-products/view-add}" class="btn btn-success"><i
                                     class="glyphicon glyphicon-plus"></i> <span>Thêm sản phẩm mới</span></a>
-                            <a href="#deleteEmployeeModal" class="btn btn-danger" ><i
-                                    class="glyphicon glyphicon-trash"></i> <span>Xoá tất cả</span></a>
                         </div>
                     </div>
                 </div>
@@ -578,12 +576,15 @@
                         <td th:text="${p.name}"></td>
                         <td>[[${p.price}]] <u>VND</u></td>
                         <td class="col-sm-2">
-                            <a th:href="@{/manage-products/detail(id=${p.id})}" class="edit" data-toggle="modal"><i class="glyphicon glyphicon-search" style="color: #1161ee"></i></a>
-                            <a th:href="@{/manage-products/view-update(id=${p.id})}" class="edit" data-toggle="modal"><i class="glyphicon glyphicon-pencil" style="color: #679a6f"></i></a>
-                            <a th:href="@{/manage-products/delete(id=${p.id})}" class="delete" data-toggle="modal"><i class="glyphicon glyphicon-trash" style="color: red"></i></a>
+                            <a th:href="@{/manage-products/detail(id=${p.id})}" class="edit" data-toggle="modal"><i
+                                    class="glyphicon glyphicon-search" style="color: #1161ee"></i></a>
+                            <a th:href="@{/manage-products/view-update(id=${p.id})}" class="edit" data-toggle="modal"><i
+                                    class="glyphicon glyphicon-pencil" style="color: #679a6f"></i></a>
+                            <a onclick="if (confirm('Bạn có chắc muốn xoá sản phẩm này ?'))alert('Xoá thành công'); else return false"
+                               th:href="@{/manage-products/delete(id=${p.id})}" class="delete" data-toggle="modal"><i
+                                    class="glyphicon glyphicon-trash" style="color: red"></i></a>
                         </td>
                     </tr>
-
 
 
                     </tbody>
@@ -591,14 +592,20 @@
                 </table>
                 <div class="row">
                     <div class="col-sm-12 text-center">
-                        <a th:if="${products.getNumber()>0}" th:href="@{/manage-products(page=${products.getNumber()})}" class="btn btn-primary">Previous</a>
-                        <a th:unless="${products.getNumber()>0}" th:href="@{/manage-products(page=${products.getNumber()})}" class="btn btn-danger disabled">Previous</a>
+                        <a th:if="${products.getNumber()>0}" th:href="@{/manage-products(page=${products.getNumber()})}"
+                           class="btn btn-primary">Previous</a>
+                        <a th:unless="${products.getNumber()>0}"
+                           th:href="@{/manage-products(page=${products.getNumber()})}" class="btn btn-danger disabled">Previous</a>
 
                         <span th:text="${products.getNumber()+1} +'/'+ ${products.getTotalPages()}"></span>
 
 
-                        <a th:if="${products.getNumber()<products.getTotalPages()-1}" th:href="@{/manage-products(page=${products.getNumber()+2})}" class="btn btn-primary">Next</a>
-                        <a th:unless="${products.getNumber()<products.getTotalPages()-1}" th:href="@{/manage-products(page=${products.getNumber()+2})}" class="btn btn-danger disabled">Next</a>
+                        <a th:if="${products.getNumber()<products.getTotalPages()-1}"
+                           th:href="@{/manage-products(page=${products.getNumber()+2})}"
+                           class="btn btn-primary">Next</a>
+                        <a th:unless="${products.getNumber()<products.getTotalPages()-1}"
+                           th:href="@{/manage-products(page=${products.getNumber()+2})}"
+                           class="btn btn-danger disabled">Next</a>
                     </div>
                 </div>
 

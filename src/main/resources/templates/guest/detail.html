@@ -16,7 +16,7 @@
             <div class="panel-body">
                 <ul>
                     <li th:text="'Tên đồng hồ: '+${p.name}"></li>
-                    <li th:text="'Giá: '+${p.price}"></li>
+                    <li>Giá: [[${p.price}]] <u>VND</u></li>
                     <li th:text="'Tên hãng: '+${p.brand.name}"></li>
                     <li th:text="'Loại đồng hồ: '+${p.category.name}"></li>
                     <li th:text="'Loại dây: '+${p.strap.name}"></li>

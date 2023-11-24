@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+
 @Service
 public class CategoryService implements ICategoryService{
     @Autowired
@@ -14,5 +16,16 @@ public class CategoryService implements ICategoryService{
     @Override
     public List<Category> findAll() {
         return repository.findAll();
+    }
+
+    @Override
+    public Category findById(Integer id) {
+        Optional<Category>result=repository.findById(id);
+        if(result.isPresent()) {
+            return result.get();
+        }
+        else {
+            throw new RuntimeException("Mã danh mục không tồn tại: Id = "+id);
+        }
     }
 }

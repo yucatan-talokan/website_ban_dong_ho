@@ -2,16 +2,21 @@ package com.example.website_ban_dong_ho.service;
 
 import com.example.website_ban_dong_ho.entity.Product;
 import com.example.website_ban_dong_ho.repository.IProductRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
-
+@RequiredArgsConstructor
 @Service
 public class ProductService implements IProductService{
+
+    private final FileUpload fileUpload;
+
     @Autowired
     private IProductRepository repository;
 
@@ -48,9 +53,11 @@ public class ProductService implements IProductService{
     }
 
     @Override
-    public void delete(Integer id) {
+    public void delete(Integer id) throws IOException {
+        fileUpload.deleteFile(findById(id).getImageId());
         repository.deleteById(id);
     }
+
 
 
 }

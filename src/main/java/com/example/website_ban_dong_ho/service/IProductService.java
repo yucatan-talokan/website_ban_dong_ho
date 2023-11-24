@@ -4,6 +4,7 @@ import com.example.website_ban_dong_ho.entity.Product;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.io.IOException;
 import java.util.List;
 
 public interface IProductService {
@@ -17,5 +18,6 @@ public interface IProductService {
 
     void save(Product product);
 
-    void delete(Integer id);
+    void delete(Integer id) throws IOException;
+
 }

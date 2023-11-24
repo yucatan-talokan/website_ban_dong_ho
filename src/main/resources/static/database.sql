@@ -28,7 +28,6 @@ CREATE TABLE PRODUCTS
     Name       NVARCHAR(255),
     Image      VARCHAR(255),
     Price      DECIMAL,
-    QuantityLeft integer,
     Brandid    integer,
     Categoryid integer,
     Strapid    integer,
