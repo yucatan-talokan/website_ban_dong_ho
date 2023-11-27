@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{product-managed/index::dynamic1(~{::main})}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<main>
+    <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#category">Danh mục</a></li>
+        <li><a data-toggle="tab" href="#brand">Hãng</a></li>
+        <li><a data-toggle="tab" href="#strap">Loại dây</a></li>
+        <li><a data-toggle="tab" href="#movement">Dòng máy</a></li>
+    </ul>
+<!--//////////////////////////////////TAB CATEGORY//////////////////////////////////-->
+    <div class="tab-content">
+        <div id="category" class="tab-pane fade in active">
+            <form th:action="@{/manage-property/category/add}" method="post">
+                <div id="categoryModal" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Thêm mới thuộc tính</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="form-group col-sm-12">
+                                        <div>Nhập tên</div>
+                                        <input type="text" name="name" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <input type="submit" class="btn btn-primary" value="Thêm mới">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Đóng</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </form>
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <a data-target="#categoryModal" data-toggle="modal" class="btn btn-success"><i
+                                class="glyphicon glyphicon-plus"></i> <span>Thêm thuộc tính mới</span></a>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Tên thuộc tính</th>
+                                <th>Hành động</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="c:${category}">
+                                <td>[[${c.id}]]</td>
+                                <td>[[${c.name}]]</td>
+                                <td class="col-sm-2">
+                                    <a th:href="@{/manage-property/category/view-update(id=${c.id})}" class="edit" data-toggle="modal"><i
+                                            class="glyphicon glyphicon-pencil" style="color: #679a6f"></i></a>
+                                    <a style="margin-left: 15px" onclick="if (confirm('Bạn có chắc muốn xoá thuộc tính này ?'))alert('Xoá thành công'); else return false"
+                                       th:href="@{/manage-property/category/delete(id=${c.id})}" class="delete" data-toggle="modal"><i
+                                            class="glyphicon glyphicon-trash" style="color: red"></i></a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+        </div>
+<!--        //////////////////////////////////TAB BRAND//////////////////////////////////////////-->
+        <div id="brand" class="tab-pane fade">
+            <form th:action="@{/manage-property/brand/add}" method="post">
+                <div id="brandModal" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Thêm mới thuộc tính</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="form-group col-sm-12">
+                                        <div>Nhập tên</div>
+                                        <input type="text" name="name" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <input type="submit" class="btn btn-primary" value="Thêm mới">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Đóng</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </form>
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <a data-target="#brandModal" data-toggle="modal" class="btn btn-success"><i
+                            class="glyphicon glyphicon-plus"></i> <span>Thêm thuộc tính mới</span></a>
+                </div>
+                <div class="panel-body">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Tên thuộc tính</th>
+                            <th>Hành động</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="b:${brand}">
+                            <td>[[${b.id}]]</td>
+                            <td>[[${b.name}]]</td>
+                            <td class="col-sm-2">
+                                <a th:href="@{/manage-property/brand/view-update(id=${b.id})}" class="edit" data-toggle="modal"><i
+                                        class="glyphicon glyphicon-pencil" style="color: #679a6f"></i></a>
+                                <a style="margin-left: 15px" onclick="if (confirm('Bạn có chắc muốn xoá thuộc tính này ?'))alert('Xoá thành công'); else return false"
+                                   th:href="@{/managed-property/brand/delete(id=${b.id})}" class="delete" data-toggle="modal"><i
+                                        class="glyphicon glyphicon-trash" style="color: red"></i></a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+<!--        ////////////////////////////////TAB STRAP///////////////////////////////////////////////////////-->
+        <div id="strap" class="tab-pane fade">
+            <form th:action="@{/manage-property/strap/add}" method="post">
+                <div id="strapModal" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Thêm mới thuộc tính</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="form-group col-sm-12">
+                                        <div>Nhập tên</div>
+                                        <input type="text" name="name" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <input type="submit" class="btn btn-primary" value="Thêm mới">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Đóng</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </form>
+
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <a data-target="#strapModal" data-toggle="modal" class="btn btn-success"><i
+                            class="glyphicon glyphicon-plus"></i> <span>Thêm thuộc tính mới</span></a>
+                </div>
+                <div class="panel-body">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Tên thuộc tính</th>
+                            <th>Hành động</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="s:${strap}">
+                            <td>[[${s.id}]]</td>
+                            <td>[[${s.name}]]</td>
+                            <td class="col-sm-2">
+                                <a th:href="@{/manage-property/strap/view-update(id=${s.id})}" class="edit" data-toggle="modal"><i
+                                        class="glyphicon glyphicon-pencil" style="color: #679a6f"></i></a>
+                                <a style="margin-left: 15px" onclick="if (confirm('Bạn có chắc muốn xoá thuộc tính này ?'))alert('Xoá thành công'); else return false"
+                                   th:href="@{/manage-property/strap/delete(id=${s.id})}" class="delete" data-toggle="modal"><i
+                                        class="glyphicon glyphicon-trash" style="color: red"></i></a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!--            ////////////////////////////////TAB MOVEMENT/////////////////////////////////-->
+        <div id="movement" class="tab-pane fade">
+            <form th:action="@{/manage-property/movement/add}" method="post">
+                <div id="movementModal" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Thêm mới thuộc tính</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="form-group col-sm-12">
+                                        <div>Nhập tên</div>
+                                        <input type="text" name="name" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <input type="submit" class="btn btn-primary" value="Thêm mới">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Đóng</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </form>
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <a data-target="#movementModal" data-toggle="modal" class="btn btn-success"><i
+                            class="glyphicon glyphicon-plus"></i> <span>Thêm thuộc tính mới</span></a>
+                </div>
+                <div class="panel-body">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Tên thuộc tính</th>
+                            <th>Hành động</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="m:${movement}">
+                            <td>[[${m.id}]]</td>
+                            <td>[[${m.name}]]</td>
+                            <td class="col-sm-2">
+                                <a th:href="@{/manage-property/movement/view-update(id=${m.id})}" class="edit" data-toggle="modal"><i
+                                        class="glyphicon glyphicon-pencil" style="color: #679a6f"></i></a>
+                                <a style="margin-left: 15px" onclick="if (confirm('Bạn có chắc muốn xoá thuộc tính này ?'))alert('Xoá thành công'); else return false"
+                                   th:href="@{/manage-property/movement/delete(id=${m.id})}" class="delete" data-toggle="modal"><i
+                                        class="glyphicon glyphicon-trash" style="color: red"></i></a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+</body>
+</html>

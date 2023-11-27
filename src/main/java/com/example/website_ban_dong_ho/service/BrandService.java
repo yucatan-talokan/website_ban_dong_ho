@@ -28,4 +28,14 @@ public class BrandService implements IBrandService {
             throw new RuntimeException("Mã hãng không tồn tại: Id = "+id);
         }
     }
+
+    @Override
+    public void save(Brand brand) {
+        repository.save(brand);
+    }
+
+    @Override
+    public void delete(Integer id) {
+        repository.deleteById(id);
+    }
 }

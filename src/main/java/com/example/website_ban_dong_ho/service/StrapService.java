@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class StrapService implements IStrapService{
+public class StrapService implements IStrapService {
     @Autowired
     private IStrapRepository repository;
 
@@ -20,13 +20,22 @@ public class StrapService implements IStrapService{
 
     @Override
     public Strap findById(Integer id) {
-        Optional<Strap>result=repository.findById(id);
-        if(result.isPresent()) {
+        Optional<Strap> result = repository.findById(id);
+        if (result.isPresent()) {
             return result.get();
+        } else {
+            throw new RuntimeException("Mã dây không tồn tại: Id = " + id);
         }
-        else {
-            throw new RuntimeException("Mã dây không tồn tại: Id = "+id);
-        }
+    }
+
+    @Override
+    public void save(Strap strap) {
+        repository.save(strap);
+    }
+
+    @Override
+    public void delete(Integer id) {
+        repository.deleteById(id);
     }
 
 

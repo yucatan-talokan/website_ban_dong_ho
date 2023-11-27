@@ -110,13 +110,14 @@
         }
 
 
-
     </style>
 </head>
 <body class="container">
 <header class="row">
     <h1 class="alert alert-success">Quản lý sản phẩm</h1>
 </header>
+
+
 
 <div class="row">
     <nav class="navbar navbar-inverse" style="font-variant: small-caps">
@@ -127,12 +128,12 @@
                 </p>
             </div>
             <ul class="nav navbar-nav">
-                <!--                <li><a th:href="@{/products}">Trang chủ</a></li>-->
-                <!--                <li><a th:href="@{/orders/list}">Lịch sử mua hàng</a></li>-->
-                <!--                <li><a th:href="@{/logout}" methods="post">Đăng xuất</a></li>-->
+                <li><a class="navbar-brand" th:href="@{/manage-products}">Sản phẩm</a></li>
+                <li><a class="navbar-brand" th:href="@{/manage-property}">Thuộc tính</a></li>
                 <li>
                     <form class="form" th:action="@{/logout}" method="post">
-                        <input class="navbar-brand custom-input" type="submit" value="Đăng xuất" style="font-family:Helvetica,Arial,sans-serif">
+                        <input class="navbar-brand custom-input" type="submit" value="Đăng xuất"
+                               style="font-family:Helvetica,Arial,sans-serif">
                     </form>
                 </li>
             </ul>

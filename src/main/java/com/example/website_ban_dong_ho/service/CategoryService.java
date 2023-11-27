@@ -28,4 +28,14 @@ public class CategoryService implements ICategoryService{
             throw new RuntimeException("Mã danh mục không tồn tại: Id = "+id);
         }
     }
+
+    @Override
+    public void save(Category category) {
+        repository.save(category);
+    }
+
+    @Override
+    public void delete(Integer id) {
+        repository.deleteById(id);
+    }
 }

@@ -8,4 +8,8 @@ public interface ICategoryService {
     List<Category>findAll();
 
     Category findById(Integer id);
+
+    void save(Category category);
+
+    void delete(Integer id);
 }

@@ -8,4 +8,8 @@ public interface IBrandService {
     List<Brand>findAll();
 
     Brand findById(Integer id);
+
+    void save(Brand brand);
+
+    void delete(Integer id);
 }

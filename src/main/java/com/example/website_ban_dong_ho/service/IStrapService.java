@@ -8,4 +8,8 @@ public interface IStrapService {
     List<Strap>findAll();
 
     Strap findById(Integer id);
+
+    void save(Strap strap);
+
+    void delete(Integer id);
 }

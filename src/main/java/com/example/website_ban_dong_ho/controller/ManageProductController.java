@@ -2,7 +2,9 @@ package com.example.website_ban_dong_ho.controller;
 
 import com.example.website_ban_dong_ho.entity.Product;
 import com.example.website_ban_dong_ho.service.*;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -17,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -40,6 +43,9 @@ public class ManageProductController {
 
     @Autowired
     private IMovementService movementService;
+
+    @Autowired
+    private IExcelService excelService;
 
 
     @GetMapping()
@@ -148,4 +154,13 @@ public class ManageProductController {
         return "redirect:/manage-products";
     }
 
+    @GetMapping("/export-excel")
+    public void exportExcel(HttpServletResponse response)throws IOException{
+        List<Product>list=productService.findAll();
+        Workbook workbook=excelService.createExcel(list);
+        response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+        response.setHeader("Content-Disposition", "attachment; filename=DanhSachSanPham.xlsx");
+        workbook.write(response.getOutputStream());
+        workbook.close();
+    }
 }

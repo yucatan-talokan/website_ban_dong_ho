@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{product-managed/index::dynamic1(~{::main})}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<main>
+    <form method="post" th:action="@{/manage-property/movement/update(id=${m.id})}" class="panel panel-primary">
+        <div class="panel-heading">Cập nhật thuộc tính</div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="form-group col-sm-12">
+                    <div>Nhập tên thuộc tính</div>
+                    <input th:value="${m.name}" type="text" name="name" class="form-control">
+                </div>
+            </div>
+        </div>
+        <div class="panel-footer text-right">
+            <input type="submit" class="btn btn-success" value="Cập nhật">
+        </div>
+    </form>
+</main>
+</body>
+</html>

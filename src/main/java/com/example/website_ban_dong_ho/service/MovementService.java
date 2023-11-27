@@ -28,4 +28,14 @@ public class MovementService implements IMovementService{
             throw new RuntimeException("Mã hãng không tồn tại: Id = "+id);
         }
     }
+
+    @Override
+    public void save(Movement movement) {
+        repository.save(movement);
+    }
+
+    @Override
+    public void delete(Integer id) {
+        repository.deleteById(id);
+    }
 }

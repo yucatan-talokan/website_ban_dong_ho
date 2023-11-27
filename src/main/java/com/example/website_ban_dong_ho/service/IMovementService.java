@@ -8,4 +8,8 @@ public interface IMovementService {
     List<Movement>findAll();
 
     Movement findById(Integer id);
+
+    void save(Movement movement);
+
+    void delete(Integer id);
 }
