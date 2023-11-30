@@ -3,6 +3,8 @@ package com.example.website_ban_dong_ho.service;
 import com.example.website_ban_dong_ho.entity.Order;
 import com.example.website_ban_dong_ho.repository.IOrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,6 +18,11 @@ public class OrderService implements IOrderService {
     @Override
     public List<Order> findAllDesc() {
         return repository.findAllDesc();
+    }
+
+    @Override
+    public Page<Order> findPageDesc(Pageable pageable) {
+        return repository.findPageDesc(pageable);
     }
 
     @Override
